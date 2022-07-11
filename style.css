@@ -1,0 +1,101 @@
+/* css grid */
+
+body {
+    background-color: black;
+    margin: 0;
+}
+
+.grid-container {
+    color:white;
+    margin:20px ;
+    padding: 20px;
+    display: grid;
+    /* put a list of all the column sizes you want */
+    /* 1fr 1 fraction acts as flex grow repeat(no of times, size) */
+    grid-template-columns: 60% 40%;
+    grid-auto-rows: minmax(150px, auto);
+    /* grid-auto-rows defaults after template rows */
+    /* to prevent text from overflowing in auto rows we use minmax(150px, auto)*/
+    grid-row-gap: 0px; 
+    grid-column-gap: 0px ; 
+    grid-gap: 20px;
+    grid-template-areas: "head head"
+                         "nav  main"
+                         "nav  main";
+    justify-content: start;
+
+}
+
+.grid-item {
+    background-color: blue;
+    border: 2px solid white;
+    padding: 30px;
+
+}
+
+.grid-item1 {
+    grid-area: head;
+}
+
+.grid-item2 {
+    grid-area:nav ;
+}
+
+.grid-item3 {
+    grid-area: main;
+}
+
+/* translateY(-59) moves us 59 px down */
+
+/* CSS ANIMATION */
+.parent {
+    background-color: hsla(200, 100%, 20%);
+    height: 400px;
+    width: 400px;
+}
+
+.child {
+    background-color: red;
+    height: 50%;
+    width: 50%;
+    transition: transform 1s  cubic-bezier(0,-0.38,.93,1.9) 3s;
+}
+
+.parent:hover .child{
+    transform: translateX(100%);
+    animation: left-to-right 1s ease-in-out backwards 4 alternate 3s;
+}
+
+@keyframes left-to-right {
+    0% {
+        transform: translateX(0);
+    }
+    25%{
+        transform: translateY(100%);
+    }
+    75%{
+        transform: translate(100%, 100%);
+    }
+    100%{
+        transform: translateX(100%);
+    }
+}
+
+
+/* in css the are two ways to animate you can use transform which is simple or the full on 
+when applying transition apply on the base class and not the hover.
+linear goes with a constannt speed while ease in out starts out slowy goes faster then ends slow.
+the 3s is delay.
+That is all transitions can do*/
+
+/* animations has more propeties than transition.
+animation needs a custom name
+use @keyframes outside any selctor use your animation name
+when you dont specify the 0% it users the .child.
+animations do all that is in the keyframes
+the forwards property in the animation keeps the 100% property while the backwards keeps the 0% property
+we can tell the animation how many times to repeat 4
+we can specify direction alternate
+delay comes after duration
+animation-play-state 
+
